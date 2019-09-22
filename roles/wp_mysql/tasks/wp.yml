@@ -1,0 +1,15 @@
+- name: Create WP Container
+  docker_container:
+    name: fsm_wp
+    networks_cli_compatible: yes
+    networks:
+      - name: fsm
+    image: wordpress:latest
+    restart_policy: always
+    ports:
+      - "8000:80"
+    env:
+      WORDPRESS_DB_HOST: fsm_mysql:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress

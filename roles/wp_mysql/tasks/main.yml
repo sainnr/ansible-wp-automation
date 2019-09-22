@@ -1,0 +1,6 @@
+---
+- name: Install MySQL
+  import_tasks: mysql.yml
+
+- name: Install WordPress
+  import_tasks: wp.yml

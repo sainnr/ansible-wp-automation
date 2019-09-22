@@ -1,0 +1,23 @@
+- name: Create Data Directory
+  become: true
+  file:
+    path: /opt/fsm/data
+    state: directory
+    mode: '0755'
+
+- name: Create MySQL Container
+  docker_container:
+    name: fsm_mysql
+    networks_cli_compatible: yes
+    networks:
+      - name: fsm
+    image: mysql:5.7
+    volumes:
+      - /opt/fsm/data:/var/lib/mysql
+    restart_policy: always
+    env:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_HOST: '%'
