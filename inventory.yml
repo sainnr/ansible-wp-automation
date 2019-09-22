@@ -1,0 +1,4 @@
+---
+wp_mysql_servers:
+  hosts:
+    fsm-wp-1

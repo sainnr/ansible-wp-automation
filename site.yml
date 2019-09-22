@@ -1,0 +1,5 @@
+---
+- hosts: wp_mysql_servers
+  become_flags: -E
+  roles:
+    - common

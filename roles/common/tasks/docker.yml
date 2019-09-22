@@ -1,0 +1,63 @@
+---
+- name: Create Docker Group
+  become: true
+  group:
+    name: docker
+    state: present
+
+- name: Add User to Docker Group
+  become: true
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: true
+
+- meta: reset_connection
+
+- name: Install Common Packages
+  become: true
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+
+- name: Set Docker GPG key
+  become: true
+  apt_key: url=https://download.docker.com/linux/debian/gpg
+
+- name: Set Docker APT repository
+  become: true
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/debian {{ansible_distribution_release}} stable
+
+- name: Install Docker
+  become: true
+  apt: name=docker-ce
+
+- name: Install Python Dependencies
+  become: true
+  apt:
+    update_cache: yes
+    state: latest
+    name: python3-pip
+
+- name: Ensure pip is installed
+  become: true
+  apt:
+    update_cache: yes
+    state: latest
+    name: python-pip
+
+- name: Install Docker SDK for Python
+  pip:
+    name: docker
+
+- name: Create Docker Network
+  docker_network:
+    name: fsm
