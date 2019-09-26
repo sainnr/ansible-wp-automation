@@ -16,9 +16,9 @@ Supported:
  - common packages and Docker setup
  - deployment of a MySQL container with mounted volume
  - deployment of a WP container connected to the DB
-
-TODO:
  - nginx proxy setup
  - LE proxy companion, to enable HTTPS
+
+TODO:
  - proper setup of secrets & env vars
  - a neat readme with instructions

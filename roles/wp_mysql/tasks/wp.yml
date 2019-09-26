@@ -7,9 +7,13 @@
     image: wordpress:latest
     restart_policy: always
     ports:
-      - "8000:80"
+      - "8080:80"
     env:
       WORDPRESS_DB_HOST: fsm_mysql:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DEBUG: "1"
+      VIRTUAL_HOST: admin.fullstackme.co.uk
+      LETSENCRYPT_HOST: admin.fullstackme.co.uk
+      LETSENCRYPT_EMAIL: vs@fullstackme.co.uk

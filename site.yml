@@ -4,3 +4,4 @@
   roles:
     - common
     - wp_mysql
+    - nginx_tls

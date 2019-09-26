@@ -61,3 +61,7 @@
 - name: Create Docker Network
   docker_network:
     name: fsm
+
+- name: Install Docker Compose
+  pip:
+    name: docker-compose
